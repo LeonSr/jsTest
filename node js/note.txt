@@ -1,0 +1,49 @@
+fs is a library to use manipulate files in system
+
+
+const fs = require("fs");         # to import the file system library and methods
+
+
+fs.writeFile("mesage.txt","hello world" , (err) => {                     # writeFile  is a method to make a file and import data in it and the err is too encounter the errors that made
+    if(err) throw err;                                                   # if there is an error this command will log it 
+    console.log("the file has been saved");                              # this will print if the file has been saved
+})
+
+fs.readFile("./node js/passwd" , (err , data) => {                        #readFile is a method to read a file and it save the data
+    if(err) throw err;                                                   # if there is an error this command will log it
+    console.log(data)                                                    # this will print the data
+})
+
+
+======================================================================================================================================================================================================
+
+
+to install a package from node package manager:
+                npm -i  "package manager"
+
+
+to use package :
+    variable_name = require("package name")
+
+
+*** to use import method 
+
+go to package.json 
+look for "type" in the object and it is equal to "commonjs" you change it to "module"
+
+
+how to use package when "type" : "module"  ==>
+import package-name from "package-name"
+
+
+======================================================================================================================================================================================================
+
+inquirer package is to make prompts and ask question 
+
+qr-image is to make qr code 
+
+======================================================================================================================================================================================================
+
+
+
+
