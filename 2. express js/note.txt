@@ -1,0 +1,92 @@
+to write code for backend and make life easeir we use express and not using node ja purely
+
+to install express package write this command in terminal where you want to install it :
+        npm install express
+
+if you use your module type to import express :
+        import express from "express"
+
+if you use commonjs type to use express:
+        const express = require('express')
+
+
+to use express you set a variable to express object:
+    const app = express();
+
+you can also set  a port variable for easy use:
+    const port = 3000;
+
+to listen to that port you have to write this lines of code:
+
+app.listen(port,()=>{
+    console.log(`sever is running at http://localhost:${port}/`)
+})
+
+
+*** to automaticlly stop and start a server after a change we use nodemon  instead of node in terminal
+to install it globely run this command --> npm i -g nodemon
+
+*** to see what prot are in use run this command in terminal --> netstat -ano | findstr "LISTENING"
+
+==============================================================================================================
+
+to cominucate with com we use http (hyper text transfer protocol)
+
+http request :
+
+1. get ==> request resource
+2. post ==> sending resource
+3. put ==> replace resource
+4. patch ==> patch up a resource
+5. delete ==> delete resource 
+
+when you open localhost:3000 it tries to make a get request to root resource or our home page to address this use this lines of command
+
+app.get("/",(req,res)=>{          #get method is a method when you send a get request it address it to what is want to with it and the function req is to store req and res is to store respones
+    res.send("hello world")       #send method send a respones to clint  
+})
+
+*** you can address any page within the "" like "about" or "contact" except of "/"
+
+==============================================================================================================
+
+express middleware:
+a middleware is like a man in the middle that before it send it to process it , it makes some changes to it and then send to proper protocol
+
+*** if you have public folder and you html files are there to make pathing easy write this codes:
+
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url))                       # to make pathing easy and finding the folder easeir usually it wil be use to get the full path without writing it like for cloud and server
+
+app.get("/", (req , res)=>{
+    res.sendFile(__dirname+"/public/index.html")                               # to respone with html file we use sendFile method and inside we give the path to that file.
+});
+
+
+body parser :
+ to install this package ==> npm install body-parser
+
+ to use body parser first you install then you import it into your js file after that with this line of code you can access the data from html
+ app.use(bodyParser.urlencoded({extended : true}));
+
+ ==============================================================================================================
+
+ morgon middleware:
+
+is a middleware of node js that logs https request 
+to install morgon run this command in terminal :
+var morgan = require('morgan')
+
+
+to write a new middleware you specify app.use    to create a new middleware and it will have req res next option because there will be multupile middleware the next() (function) determine that if we move forword or not
+
+
+==============================================================================================================
+
+
+
+
+
+
+
