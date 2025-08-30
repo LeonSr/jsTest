@@ -1,0 +1,50 @@
+when we want to use js in html we use embeded javascript in short ejs
+we use it to sent data to html
+
+if we want to render a file and send data to it :
+
+app.post("/submit" , (req , res) => {
+    res.render("index.ejs" , 
+    {name: req.body["name]}                                 #this will send data as an object to be use in html
+    );
+} )
+
+
+then in html file with ejs indication:
+
+<body>
+    <h1>
+        hello <%= name %>                                   #this will show the data that we store in name
+    </h1?
+</body>
+
+
+
+*** its helpful to INSTALL ejs language support
+
+==================================================================================================================================
+
+ejs tag:
+
+<%= variable %>                                    js output
+<% console.log("hello") %>                         js excution
+<%- <h1>hello</h1> %>                              render HTML 
+<%% %%>                                            show <% ir %>
+<%# this is a comment  %>                          stop excution
+<%- include("header.ejs") %>                       insert another EJS file
+
+
+===================================================================================================================================
+
+if you use if there is a data in variable and then you use lavals method to encouter the errors it may cause of that
+for example
+
+<% if (locals.fruits) { %>
+    <ul>
+        <%fruits.forEach((fruit)=>{ %>
+            <li>
+                <%=fruit %>
+            </li>
+        <%}) %>
+    </ul>
+<% } %>.

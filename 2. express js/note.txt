@@ -65,11 +65,14 @@ app.get("/", (req , res)=>{
 
 
 body parser :
+body parser is package to get data from forms and html.
  to install this package ==> npm install body-parser
 
  to use body parser first you install then you import it into your js file after that with this line of code you can access the data from html
  app.use(bodyParser.urlencoded({extended : true}));
 
+
+*** now express have this method there is no need for this method
  ==============================================================================================================
 
  morgon middleware:
