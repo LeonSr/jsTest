@@ -8,13 +8,14 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
+app.use(express.static("public"));
 
 app.set("view engine","ejs");
 
 
 app.get("/", (req, res) => {
   res.render(path.join(__dirname, "index"),{
-    sina: "sina"
+    sina: "sina" , rasooli : "rasooli"
   });
 });
 
