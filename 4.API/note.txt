@@ -1,0 +1,26 @@
+i incounter a problem when i was coding in the files when i run the code it coudnt find the prper path to solve this problem i used :
+
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+so it got solved but for rendering the ejs file i had another problem which i solved with installing ejs package:
+
+npm install ejs
+
+and to run the proper indication i run this script in :
+
+app.set("view engine","ejs");                        # this make ejs as a veiw engine
+
+
+and to render it just put the name in it :
+
+res. render("index")
+
+
+=====================================================================================================================================================
+
+
