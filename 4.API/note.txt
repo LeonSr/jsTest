@@ -18,7 +18,7 @@ app.set("view engine","ejs");                        # this make ejs as a veiw e
 
 and to render it just put the name in it :
 
-res. render("index")
+res.render("index")
 
 
 =====================================================================================================================================================
