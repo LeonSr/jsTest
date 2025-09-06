@@ -36,7 +36,7 @@ ejs tag:
 
 ===================================================================================================================================
 
-if you use if there is a data in variable and then you use lavals method to encouter the errors it may cause of that
+if you use if there is a data in variable and then you use lacals method to encouter the errors it may cause of that
 for example
 
 <% if (locals.fruits) { %>
@@ -48,3 +48,6 @@ for example
         <%}) %>
     </ul>
 <% } %>.
+
+
+becuase there might not be a data in that variable and this cuase and errors

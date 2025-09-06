@@ -47,3 +47,19 @@ baseURL/endpoint/{path-parameters}
 if you want to find a specific resource in the api you can udentify that with path parameters
 this is for a specific resource
 ========================================================================================================================================
+what is json?
+javascript object notation
+
+
+to turn js object to json:
+const jsonData = JSON.stringify(data)
+
+
+to turn json to js object:
+const Data = JSON.parse(jsonData)
+
+
+========================================================================================================================================
+
+
+

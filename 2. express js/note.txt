@@ -86,9 +86,44 @@ to write a new middleware you specify app.use    to create a new middleware and 
 
 
 ==============================================================================================================
+what does app.use(express.static("public")) do?
 
 
+ It tells your Express app to serve static files (like HTML, CSS, JavaScript, images, fonts, etc.) from the folder named public.
 
+So if your project structure looks like this:
+
+project/
+│
+├── server.js
+├── public/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+
+
+and your server has:
+
+const express = require("express");
+const app = express();
+
+app.use(express.static("public"));
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+
+
+Then:
+
+Visiting http://localhost:3000/index.html will load public/index.html.
+
+http://localhost:3000/styles.css will load public/styles.css.
+
+http://localhost:3000/script.js will load public/script.js.
+
+You don’t need to write extra routes for those files.
+
+⚡ In short:
+express.static("public") makes Express automatically look inside the public folder and serve any file in there as if it were directly available from the root URL.
 
 
 
