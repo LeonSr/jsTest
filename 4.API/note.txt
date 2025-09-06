@@ -23,4 +23,27 @@ res.render("index")
 
 =====================================================================================================================================================
 
+there are two types of api public and privet:
 
+it happens with request and responses
+
+if we request from your server its a privet api and if its from another server its punlic api.
+
+endpoint :
+baseURL/Endpoint 
+it could be differnt every time is basically a differnt rout on the api provider server
+
+
+query parameters
+baseURL/endpoint?query=value
+
+if you want to put additional information or some parameters to a request we use query its like a key and value.
+if there are multiple querys you can use & sign to make it possible for example
+baseURL/endpoint?query=value&query=value
+this is for filtering 
+
+path parameters:
+baseURL/endpoint/{path-parameters}
+if you want to find a specific resource in the api you can udentify that with path parameters
+this is for a specific resource
+========================================================================================================================================
