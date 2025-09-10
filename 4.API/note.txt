@@ -61,5 +61,39 @@ const Data = JSON.parse(jsonData)
 
 ========================================================================================================================================
 
+if we want to request and have the responses with pure node js its alot so we use a package named axios:
+
+npm install axios
+
+for learning to use there is a example code in axios directory
+
+========================================================================================================================================
+api authentication
+
+no authentication :
+
+is a public api with no authentication needed and you can simply make a request and get a responses 
+
+basic:
+
+you provide a username and password when you make a request 
+
+api user authuorisation:
+
+what is the differnce authuorisation and authentication
+if you have a user they can authenticate with username and password but authuorisation is a process with api key and you can authuorise yourself to use an api
+
+token base authentication:
+
+it make user to make a username and a passsword to generate a token to use api
+
+
+to use this methodes check the api authentication directory to see examples
+
+========================================================================================================================================
+
+
+
+
 
 
