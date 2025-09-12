@@ -92,6 +92,157 @@ to use this methodes check the api authentication directory to see examples
 
 ========================================================================================================================================
 
+## ✅ GET request
+
+```javascript
+// Using .then/.catch
+axios.get('https://api.example.com/users', {
+  params: { page: 1, limit: 10 }
+})
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
+});
+
+// Using async/await
+async function getUsers() {
+  try {
+    const response = await axios.get('https://api.example.com/users', {
+      params: { page: 1, limit: 10 }
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+getUsers();
+```
+
+---
+
+## ✅ POST request
+
+```javascript
+// Using .then/.catch
+axios.post('https://api.example.com/users', {
+  name: 'John Doe',
+  email: 'john@example.com'
+})
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
+});
+
+// Using async/await
+async function createUser() {
+  try {
+    const response = await axios.post('https://api.example.com/users', {
+      name: 'John Doe',
+      email: 'john@example.com'
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+createUser();
+```
+
+---
+
+## ✅ PUT request
+
+```javascript
+// Using .then/.catch
+axios.put('https://api.example.com/users/1', {
+  name: 'Jane Doe',
+  email: 'jane@example.com'
+})
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
+});
+
+// Using async/await
+async function updateUser() {
+  try {
+    const response = await axios.put('https://api.example.com/users/1', {
+      name: 'Jane Doe',
+      email: 'jane@example.com'
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+updateUser();
+```
+
+---
+
+## ✅ PATCH request
+
+```javascript
+// Using .then/.catch
+axios.patch('https://api.example.com/users/1', {
+  email: 'newemail@example.com'
+})
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
+});
+
+// Using async/await
+async function patchUser() {
+  try {
+    const response = await axios.patch('https://api.example.com/users/1', {
+      email: 'newemail@example.com'
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+patchUser();
+```
+
+---
+
+## ✅ DELETE request
+
+```javascript
+// Using .then/.catch
+axios.delete('https://api.example.com/users/1')
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
+});
+
+// Using async/await
+async function deleteUser() {
+  try {
+    const response = await axios.delete('https://api.example.com/users/1');
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+deleteUser();
+```
+
+you can see example in rest apis directory to how to use it.
+
+========================================================================================================================================
 
 
 
