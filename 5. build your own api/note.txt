@@ -1,0 +1,222 @@
+
+---
+
+# 📝 Breakdown of Your API Code
+
+## 1. Imports & Setup
+
+```js
+import express from "express";
+import bodyParser from "body-parser";
+
+const app = express();
+const port = 3000;
+const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
+
+app.use(bodyParser.urlencoded({ extended: true }));
+```
+
+* `express` → Web framework for handling routes (GET, POST, PUT, etc.).
+* `body-parser` → Middleware to parse incoming request bodies (so you can read `req.body`).
+* `app` → The Express application.
+* `port` → Server will run on `http://localhost:3000`.
+* `masterKey` → Security check (only people with this key can delete **all jokes**).
+
+---
+
+## 2. Data Store
+
+```js
+var jokes = [
+  { id: 1, jokeText: "Why don't scientists trust atoms? Because they make up everything.", jokeType: "Science" },
+  { id: 2, jokeText: "Why did the scarecrow win an award? Because he was outstanding in his field.", jokeType: "Puns" },
+  ...
+];
+```
+
+👉 This is your **in-memory database** (an array). In real projects, you’d replace it with MongoDB, PostgreSQL, etc.
+
+---
+
+## 3. Routes (Endpoints)
+
+### 🔹 GET random joke
+
+```js
+app.get("/random", (req, res) => {
+  const randomIndex = Math.floor(Math.random() * jokes.length);
+  res.json(jokes[randomIndex]);
+});
+```
+
+* Picks a random joke and sends it as JSON.
+
+---
+
+### 🔹 GET specific joke by ID
+
+```js
+app.get("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const foundJoke = jokes.find((joke) => joke.id === id);
+  res.json(foundJoke);
+});
+```
+
+* `:id` is a **route parameter**.
+* Finds a joke where `joke.id === id`.
+
+---
+
+### 🔹 GET jokes filtered by type
+
+```js
+app.get("/filter", (req, res) => {
+  const type = req.query.type;
+  const filteredActivities = jokes.filter((joke) => joke.jokeType === type);
+  res.json(filteredActivities);
+});
+```
+
+* `req.query.type` reads a **query string parameter** like:
+  `http://localhost:3000/filter?type=Science`.
+
+---
+
+### 🔹 POST new joke
+
+```js
+app.post("/jokes", (req, res) => {
+  const newJoke = {
+    id: jokes.length + 1,
+    jokeText: req.body.text,
+    jokeType: req.body.type,
+  };
+  jokes.push(newJoke);
+  res.json(newJoke);
+});
+```
+
+* Reads `text` and `type` from `req.body` (thanks to `bodyParser`).
+* Adds a new joke to the array.
+
+👉 Test with curl:
+
+```bash
+curl -X POST http://localhost:3000/jokes \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "text=New funny joke&type=Puns"
+```
+
+---
+
+### 🔹 PUT (replace a joke)
+
+```js
+app.put("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const replacementJoke = {
+    id: id,
+    jokeText: req.body.text,
+    jokeType: req.body.type,
+  };
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  jokes[searchIndex] = replacementJoke;
+  res.json(replacementJoke);
+});
+```
+
+* PUT means **replace the entire object**.
+* Example request replaces joke with `id=3`.
+
+---
+
+### 🔹 PATCH (update part of a joke)
+
+```js
+app.patch("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const existingJoke = jokes.find((joke) => joke.id === id);
+  const replacementJoke = {
+    id: id,
+    jokeText: req.body.text || existingJoke.jokeText,
+    jokeType: req.body.type || existingJoke.jokeType,
+  };
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  jokes[searchIndex] = replacementJoke;
+  res.json(replacementJoke);
+});
+```
+
+* PATCH means **update only the given fields**.
+* If body doesn’t include `text`, it keeps the old `jokeText`.
+
+---
+
+### 🔹 DELETE single joke
+
+```js
+app.delete("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  if (searchIndex > -1) {
+    jokes.splice(searchIndex, 1);
+    res.sendStatus(200);
+  } else {
+    res.status(404).json({ error: `Joke with id: ${id} not found.` });
+  }
+});
+```
+
+* Removes a joke from the array.
+
+---
+
+### 🔹 DELETE all jokes (with masterKey)
+
+```js
+app.delete("/all", (req, res) => {
+  const userKey = req.query.key;
+  if (userKey === masterKey) {
+    jokes = [];
+    res.sendStatus(200);
+  } else {
+    res.status(404).json({ error: "You are not authorised." });
+  }
+});
+```
+
+* Requires `?key=4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT` in the URL.
+* Example:
+  `http://localhost:3000/all?key=4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT`.
+
+---
+
+## 4. Start the Server
+
+```js
+app.listen(port, () => {
+  console.log(`Successfully started server on port ${port}.`);
+});
+```
+
+* Boots up your API at `http://localhost:3000`.
+
+---
+
+# 🚀 Summary
+
+This code gives you a **full CRUD API**:
+
+* `GET /random` → random joke
+* `GET /jokes/:id` → specific joke
+* `GET /filter?type=Science` → filter jokes
+* `POST /jokes` → add joke
+* `PUT /jokes/:id` → replace joke
+* `PATCH /jokes/:id` → update joke
+* `DELETE /jokes/:id` → remove joke
+* `DELETE /all?key=masterKey` → delete all
+
+---
+
+👉 Next step: Do you want me to **refactor this into modules** (split routes, controllers, and data into separate files) so it looks like a real-world project structure?
